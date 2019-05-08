@@ -1,0 +1,7 @@
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\bin\Debug\SimpleNeuralNet.pdb
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\obj\Debug\SimpleNeuralNet.csprojAssemblyReference.cache
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\obj\Debug\SimpleNeuralNet.csproj.CoreCompileInputs.cache
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\obj\Debug\SimpleNeuralNet.pdb
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\bin\Debug\SimpleNeuralNet.dll.config
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\bin\Debug\SimpleNeuralNet.dll
+C:\Users\pie00\source\repos\SimpleNeuralNet\SimpleNeuralNet\obj\Debug\SimpleNeuralNet.dll
