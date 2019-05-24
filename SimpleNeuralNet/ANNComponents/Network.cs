@@ -132,6 +132,17 @@ namespace SimpleNeuralNet
             GlobalError = errorSum / TestingInputs.Length;
         }
 
+        // should only be run after backpropping!
+        public double SingleTest()
+        {
+            double errorSum = 0;
+            for(int i=0; i<OutputLayer.NeuronCount; i++)
+            {
+                errorSum += OutputLayer.Neurons[i].Error;
+            }
+            return errorSum;
+        }
+
         private double OutputError(double[] expectedOutput)
         {
             OutputLayer.SetErrorNeurons(expectedOutput);

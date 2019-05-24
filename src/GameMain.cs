@@ -21,7 +21,9 @@ namespace MyGame
 
             Network magicBox = new Network(neuronCounts, activator, dataset, dataRatio);
             NetworkGraphic graphicMagic = new NetworkGraphic(0, 250, 800, 100, magicBox);
-            bool paused = false;
+            bool paused = true;
+
+            GraphGraphic networkGraph = new GraphGraphic(50, 200, 200, 200, "Error", "Iteration");
 
             //Open the game window
             SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
@@ -48,6 +50,9 @@ namespace MyGame
                     magicBox.Input(inputTests[count]);
                     magicBox.Feedforward();
                     magicBox.Backpropagate(outputTests[count], 0.05);
+                    magicBox.Test();
+                    networkGraph.pushValue(magicBox.SingleTest());
+                    networkGraph.draw();
                 }
 
                 if (SwinGame.KeyReleased(KeyCode.vk_SPACE))

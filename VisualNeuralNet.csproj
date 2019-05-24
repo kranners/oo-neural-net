@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="src\GameMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\GraphGraphic.cs" />
     <Compile Include="src\LayerGraphic.cs" />
     <Compile Include="src\NetworkGraphic.cs" />
     <Compile Include="src\NeuronGraphic.cs" />
