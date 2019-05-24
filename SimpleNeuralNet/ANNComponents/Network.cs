@@ -138,7 +138,7 @@ namespace SimpleNeuralNet
             double errorSum = 0;
             for(int i=0; i<OutputLayer.NeuronCount; i++)
             {
-                errorSum += OutputLayer.Neurons[i].Error;
+                errorSum += Math.Abs(OutputLayer.Neurons[i].Error);
             }
             return errorSum;
         }

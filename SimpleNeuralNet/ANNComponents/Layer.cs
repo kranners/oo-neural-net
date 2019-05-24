@@ -61,12 +61,18 @@ namespace SimpleNeuralNet
 
         public void ActivateNeurons()
         {
-            foreach(Neuron neuronToActivate in Neurons) { neuronToActivate.Activate(); }
+            for(int i=0; i<NeuronCount; i++)
+            {
+                Neurons[i].Activate();
+            }
         }
 
         public void BackpropAll(double learningRate)
         {
-            foreach(Neuron neuronToBackprop in Neurons) { neuronToBackprop.Backprop(learningRate); }
+            for (int i = 0; i < NeuronCount; i++)
+            {
+                Neurons[i].Backprop(learningRate);
+            }
         }
 
         private void DataCheck(double[] inputData, string layerType)
