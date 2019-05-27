@@ -16,8 +16,9 @@ namespace MyGame
             IDataset dataset = new MNISTReader("Data/train-images", "Data/train-labels", dataSize);
             double[][] inputTests = dataset.GetDataset();
             double[][] outputTests = dataset.GetLabelset();
-            int[] neuronCounts = new int[] { dataset.GetDataSize(), 50, dataset.GetLabelSize() };
-            double dataRatio = 1;
+            int[] neuronCounts = new int[] { dataset.GetDataSize(), 500, 100, dataset.GetLabelSize() };
+            double dataRatio = 0.5;
+            double learningRate = 0.1;
 
             Network magicBox = new Network(neuronCounts, activator, dataset, dataRatio);
             NetworkGraphic graphicMagic = new NetworkGraphic(0, 250, 800, 100, magicBox);
@@ -25,6 +26,7 @@ namespace MyGame
             bool drawstuff = true;
 
             GraphGraphic networkGraph = new GraphGraphic(250, 200, 400, 100, "Error", "Iteration");
+            InputLayerGraphic inputGraphic = new InputLayerGraphic(250, 400, 200, dataset.GetDataSize());
 
             //Open the game window
             SwinGame.OpenGraphicsWindow("Neuralnet Project", 800, 600);
@@ -44,6 +46,7 @@ namespace MyGame
                 {
                     networkGraph.draw();
                     graphicMagic.Draw();
+                    inputGraphic.draw();
 
                     // Going to find the highest value (the one the neural net thinks it is) and print it!
                     double maxValue = magicBox.Output.Max();
@@ -58,9 +61,19 @@ namespace MyGame
                 {
                     drawstuff = !drawstuff;
                 }
+                if (SwinGame.MouseDown(MouseButton.LeftButton))
+                {
+                    Point2D mouse = SwinGame.MousePosition();
+                    inputGraphic.check((int) mouse.X, (int) mouse.Y, 2);
+                }
+                if (SwinGame.KeyReleased(KeyCode.vk_UP))
+                {
+                    magicBox.WhatIs(inputGraphic.output());
+                    inputGraphic.reset();
+                }
                 if (SwinGame.KeyReleased(KeyCode.vk_n))
                 {
-                    magicBox.Train(1, 0.05);
+                    magicBox.Train(2, learningRate);
                 }
                 if (!paused || SwinGame.KeyReleased(KeyCode.vk_RIGHT))
                 {
@@ -71,9 +84,11 @@ namespace MyGame
                     }
                     magicBox.Input(inputTests[count]);
                     magicBox.Feedforward();
-                    magicBox.Backpropagate(outputTests[count], 0.05);
-
-                    networkGraph.pushValue(magicBox.SingleTest());
+                    magicBox.Backpropagate(outputTests[count], learningRate);
+                    if (drawstuff)
+                    {
+                        networkGraph.pushValue(magicBox.SingleTest());
+                    }
                 }
 
                 if (SwinGame.KeyReleased(KeyCode.vk_SPACE))
@@ -84,7 +99,7 @@ namespace MyGame
                 SwinGame.DrawText(Convert.ToString(count), Color.Black, 50, 225);
 
                 //Draw onto the screen
-                SwinGame.RefreshScreen(60);
+                SwinGame.RefreshScreen(300);
             }
         }
     }

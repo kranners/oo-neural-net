@@ -41,7 +41,7 @@ namespace MyGame.src
 
             if (yValues.Count > w) yValues.RemoveAt(0);
 
-            drawTrendline();
+            //drawTrendline();
             drawGraph();
             drawAverage();
         }

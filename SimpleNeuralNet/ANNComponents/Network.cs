@@ -116,6 +116,11 @@ namespace SimpleNeuralNet
                     Input(TrainingInputs[i]);
                     Feedforward();
                     Backpropagate(TrainingOutputs[i], learningRate);
+                    if(i % 100 == 0)
+                    {
+                        double percentage = Math.Round(((double) i / (double) TrainingInputs.Length) * 100, 2);
+                        Console.WriteLine(Convert.ToString(percentage) + "%");
+                    }
                 }
             }
         }
